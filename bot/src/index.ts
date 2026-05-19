@@ -1,6 +1,4 @@
 import 'dotenv/config';
-import React from 'react';
-import { render } from 'ink';
 import { getBot } from './bot.js';
 import { reportHandler, reportCallbackHandler } from './handlers/report.js';
 import {
@@ -22,7 +20,7 @@ import { loggerMiddleware } from './middleware/logger.js';
 import { rateLimitMiddleware } from './middleware/rateLimit.js';
 import { checkRegisteredMiddleware } from './middleware/checkRegistered.js';
 import { initDb } from './utils/db.js';
-import { App } from './ui/App.js';
+
 
 async function main(): Promise<void> {
   try {
@@ -60,7 +58,7 @@ async function main(): Promise<void> {
   bot.use(checkRegisteredMiddleware);
   bot.use(loggerMiddleware);
 
-  render(React.createElement(App));
+  console.log('Bot UI skipped (headless mode - no terminal on Railway)');
 
   try {
     await bot.start({

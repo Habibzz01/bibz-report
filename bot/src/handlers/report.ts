@@ -132,6 +132,7 @@ export async function reportCallbackHandler(ctx: BotContext): Promise<void> {
           const untilDate = Math.floor(Date.now() / 1000) + durationMinutes * 60;
           await bot.api.restrictChatMember(chatId, targetId, {
             can_send_messages: false,
+          }, {
             until_date: untilDate,
           });
           await ctx.editMessageReplyMarkup({ reply_markup: new InlineKeyboard() });

@@ -116,13 +116,11 @@ export async function antiSpamMiddleware(ctx: BotContext, next: () => Promise<vo
         const untilDate = Math.floor(now / 1000) + AUTO_MUTE_MINUTES * 60;
         await ctx.api.restrictChatMember(msg.chat.id, userId, {
           can_send_messages: false,
-          can_send_media_messages: false,
           can_send_polls: false,
-          can_send_other_messages: false,
-          can_add_web_page_previews: false,
           can_change_info: false,
           can_invite_users: false,
           can_pin_messages: false,
+        }, {
           until_date: untilDate,
         });
       } catch {
